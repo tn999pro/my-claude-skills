@@ -21,13 +21,12 @@ Fuente de verdad de mis skills personales de Claude Code. Los directorios en
 | tech-proposals | Propuestas comerciales B2B, pricing COP/USD, Word/PDF |
 | content-automation | Contenido con IA + distribución n8n (embudo WhatsApp de Vantedge) |
 
-## Nota: ui-ux-pro-max
+## Plugins (no se duplican en este repo)
 
-El skill de UI/UX **se consume como plugin de Claude Code (`ui-ux-pro-max`
-v2.5.0)**, no como skill propio de este repo. El plugin es una versión más
-completa (7 sub-skills, 531 líneas el principal) que la copia Gemini que vive
-en `vantedge/.gemini/skills/` — no duplicar aquí para evitar drift y conflicto
-de triggers.
+| Plugin | Por qué plugin y no skill propio |
+|---|---|
+| `ui-ux-pro-max` v2.5.0 | Versión más completa (7 sub-skills, 531 líneas el principal) que la copia Gemini de `vantedge/.gemini/skills/` — duplicarla generaría drift y conflicto de triggers |
+| `frontend-design` (claude-plugins-official) | Skill oficial de Anthropic para interfaces de alta calidad; se mantiene actualizado vía marketplace |
 
 ## Convenciones
 
