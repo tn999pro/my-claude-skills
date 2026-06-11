@@ -122,7 +122,7 @@ async def get_db():
 ```python
 from sqlalchemy import String, Numeric, Boolean, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from datetime import datetime
+from datetime import datetime, UTC
 
 class Product(Base):
     __tablename__ = "products"
@@ -132,7 +132,8 @@ class Product(Base):
     price: Mapped[float] = mapped_column(Numeric(10, 2))
     is_sold_out: Mapped[bool] = mapped_column(Boolean, default=False)
     catalog_id: Mapped[str] = mapped_column(ForeignKey("catalogs.id"))
-    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+    # datetime.utcnow está deprecado desde Python 3.12
+    created_at: Mapped[datetime] = mapped_column(default=lambda: datetime.now(UTC))
 ```
 
 ### Queries async

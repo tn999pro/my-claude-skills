@@ -53,14 +53,17 @@ cat package.json | grep '"engines"' -A 3
 ## Python
 
 ### Verificar entorno virtual
+```powershell
+# PowerShell (Windows)
+$env:VIRTUAL_ENV                # vacío si no hay venv activo
+python -m venv .venv            # crear si no existe
+.\.venv\Scripts\Activate.ps1    # activar
+```
 ```bash
-# Verificar si hay venv activo
+# bash (Linux/Mac)
 echo $VIRTUAL_ENV
-
-# Crear venv si no existe
 python3 -m venv .venv
-source .venv/bin/activate  # Linux/Mac
-# .venv\Scripts\activate   # Windows
+source .venv/bin/activate
 ```
 
 ### pip
@@ -99,6 +102,13 @@ flutter doctor            # verificar instalación completa
 flutter doctor -v         # verbose, muestra todo
 flutter clean             # limpiar build cache
 flutter pub upgrade       # actualizar deps
+```
+
+### Con FVM (si existe `.fvm/`)
+```bash
+fvm install               # instala la versión fijada en .fvm/fvm_config.json
+fvm flutter pub get       # SIEMPRE prefijo fvm en proyectos con FVM
+fvm flutter doctor
 ```
 
 ### Verificar entorno Flutter

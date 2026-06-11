@@ -17,7 +17,9 @@
 | `requirements.txt` + `app.py` / `main.py` + flask | Flask |
 | `requirements.txt` + `main.py` + fastapi | FastAPI |
 | `pubspec.yaml` | Flutter |
+| `pubspec.yaml` + `.fvm/fvm_config.json` | Flutter con FVM (usar `fvm flutter`, nunca `flutter` directo) |
 | `go.mod` | Go |
+| `pom.xml` + dep `spring-boot-starter` | Spring Boot (Maven) |
 | `pom.xml` | Java / Maven |
 | `build.gradle` | Java / Gradle / Kotlin |
 | `Cargo.toml` | Rust |
@@ -34,6 +36,17 @@
 | `nx.json` | Nx |
 | `turbo.json` | Turborepo |
 | `packages/` + `apps/` dirs | Monorepo genérico |
+
+## Señales de BaaS y automatización
+
+| Archivo / dependencia | Servicio |
+|---|---|
+| `supabase/config.toml` o carpeta `supabase/` | Supabase (CLI local, migraciones, edge functions) |
+| `@supabase/supabase-js` o `@supabase/ssr` en deps | Supabase en JS/Next.js |
+| `supabase_flutter` en pubspec.yaml | Supabase en Flutter |
+| `supabase` en requirements.txt | Supabase en Python |
+| `docker-compose.yml` con imagen `n8nio/n8n` | n8n (automatización) |
+| Carpeta de workflows `.json` exportados de n8n | n8n (workflows versionados) |
 
 ## Señales de base de datos
 

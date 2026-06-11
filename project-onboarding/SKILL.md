@@ -23,10 +23,15 @@ Sigue estos pasos **en orden**. No te saltes ninguno.
 
 ### FASE 1 — Exploración y detección del stack
 
-1. **Escanea la raíz del proyecto:**
+1. **Escanea la raíz del proyecto** (usa las herramientas del entorno: Glob
+   para listar, Read para `README.md` y `CLAUDE.md` si existen):
+```powershell
+# PowerShell (Windows)
+Get-ChildItem -Force
+```
 ```bash
+# bash (Linux/Mac)
 ls -la
-cat README.md 2>/dev/null || echo "Sin README"
 ```
 
 2. **Detecta el tipo de proyecto** según los archivos presentes (ver `references/stack-detection.md` para la tabla completa de señales).
@@ -37,9 +42,14 @@ cat README.md 2>/dev/null || echo "Sin README"
    - Flutter: `pubspec.yaml`
    - Monorepo: `pnpm-workspace.yaml`, `lerna.json`, `nx.json`
 
-4. **Verifica versiones del sistema:**
+4. **Verifica versiones del sistema** (los comandos son iguales en PowerShell
+   y bash; en Windows es `python`, no `python3`):
 ```bash
-node --version 2>/dev/null; python3 --version 2>/dev/null; flutter --version 2>/dev/null; go version 2>/dev/null
+node --version
+python --version    # python3 en Linux/Mac
+flutter --version   # si hay .fvm/ usar: fvm flutter --version
+java --version
+go version
 ```
 
 ### FASE 2 — Resumen del proyecto
@@ -78,13 +88,9 @@ Detecta qué falta e instala. Consulta `references/install-commands.md` para los
 
 ### FASE 4 — Detección de errores de configuración
 
-Revisa estos problemas comunes:
-
-```bash
-# Variables de entorno
-ls -la .env* 2>/dev/null
-cat .env.example 2>/dev/null || cat .env.sample 2>/dev/null
-```
+Revisa estos problemas comunes (con Glob busca `.env*` en la raíz y con Read
+lee `.env.example` o `.env.sample` si existen — **nunca leas ni muestres el
+contenido de un `.env` real con secretos**):
 
 Reporta si:
 - Falta `.env` pero existe `.env.example` → ofrece copiarlo y rellenarlo
@@ -97,7 +103,8 @@ Reporta si:
 
 Consulta `references/vscode-plugins.md` para la lista completa por stack.
 
-**Genera siempre un `.vscode/extensions.json`** con las recomendaciones:
+**Ofrece generar un `.vscode/extensions.json`** con las recomendaciones
+(pregunta primero — no lo crees sin confirmación):
 ```json
 {
   "recommendations": [

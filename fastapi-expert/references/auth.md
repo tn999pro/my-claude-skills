@@ -58,19 +58,19 @@ async def get_catalog(
 ## §JWT Manual
 
 ```python
-# auth.py
-from jose import JWTError, jwt
-from datetime import datetime, timedelta
+# auth.py — usar PyJWT (python-jose está sin mantenimiento)
+import jwt
+from datetime import datetime, timedelta, UTC
 from app.config import settings
 
 def create_access_token(data: dict, expires_delta: timedelta = timedelta(hours=24)) -> str:
-    payload = {**data, "exp": datetime.utcnow() + expires_delta}
+    payload = {**data, "exp": datetime.now(UTC) + expires_delta}
     return jwt.encode(payload, settings.secret_key, algorithm="HS256")
 
 def verify_token(token: str) -> dict:
     try:
         return jwt.decode(token, settings.secret_key, algorithms=["HS256"])
-    except JWTError:
+    except jwt.InvalidTokenError:
         raise HTTPException(status_code=401, detail="Token inválido o expirado")
 
 # Dependency

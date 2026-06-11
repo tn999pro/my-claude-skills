@@ -65,7 +65,7 @@ cat analysis_options.yaml 2>/dev/null | head -20
 | `dio` | Singleton `Dio` con `BaseOptions` + interceptores |
 | `http` | Clase servicio con `http.Client` inyectable |
 | `retrofit` + `dio` | Interfaces `@RestApi` + build_runner |
-| `supabase_flutter` | `Supabase.instance.client` |
+| `supabase_flutter` | `Supabase.instance.client` → leer `references/supabase-flutter.md` |
 
 ### Navegación → patrón
 
@@ -251,10 +251,17 @@ fvm flutter clean            # cuando hay problemas de caché
 
 ## Archivos de referencia
 
-Leer según el gestor de estado detectado:
+Según el gestor de estado detectado:
 
 - `references/state-provider.md` — ChangeNotifier, Consumer, Selector, ProxyProvider
-- `references/state-riverpod.md` — providers, ConsumerWidget, Ref, family, invalidate
+- `references/state-riverpod.md` — providers, Notifier/AsyncNotifier, ConsumerWidget, invalidate
 - `references/state-bloc.md` — Bloc/Cubit, events, states, BlocBuilder, BlocListener
 - `references/state-getx.md` — GetxController, Obx, bindings, routing
+
+Según la tarea:
+
+- `references/http-patterns.md` — Dio/http singleton, interceptores, ApiException, upload de imágenes
+- `references/supabase-flutter.md` — auth, queries, realtime, storage con supabase_flutter
+- `references/performance.md` — rebuilds, isolates/compute, caché de imágenes, RepaintBoundary
+- `references/native-setup.md` — permisos Android/iOS, flavors, cleartext traffic, minSdk
 - `references/flutter-errors.md` — Errores frecuentes y soluciones rápidas

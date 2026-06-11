@@ -1,244 +1,222 @@
-# git-best-practices
+---
+name: git-best-practices
+description: |
+  Buenas prácticas de Git y GitHub para todos los proyectos.
+  Actívala SIEMPRE en estos contextos:
+  - Crear o nombrar ramas (feature, fix, hotfix, release, refactor, chore)
+  - Escribir o revisar mensajes de commit (Conventional Commits)
+  - Abrir, revisar o mergear pull requests (squash, merge, rebase, gh CLI)
+  - Resolver conflictos de merge o rebase
+  - Sincronizar ramas con main/develop, limpiar ramas tras el merge
+  - Proyectos con Gitflow (develop/main, ramas release y hotfix)
+  - Cualquier comando git: checkout, commit, merge, rebase, push, branch
+  Si el CLAUDE.md del proyecto define convenciones propias de ramas o
+  commits, esas tienen PRIORIDAD sobre este skill.
+---
 
-Use this skill whenever working with Git in any project. Covers the full development workflow: branch naming conventions, commit message standards (Conventional Commits), feature branch flow, PR creation and merging, hotfix flow, and conflict resolution.
+# Git Best Practices
 
-Activate this skill when:
-- Creating a new branch (feature, fix, hotfix, refactor, chore, docs, test)
-- Writing or reviewing a commit message
-- Opening or reviewing a pull request
-- Merging branches (squash, merge commit, rebase)
-- Resolving merge or rebase conflicts
-- Asking how to structure Git workflow for a task
-- Asking about branch naming, commit format, or PR description
-- Syncing a branch with main or develop via rebase
-- Cleaning up branches after merge
-- Any question involving `git checkout`, `git commit`, `git merge`, `git rebase`, `git push`, `git branch`, or `git PR`
-
-This skill applies globally to all projects. If the project's CLAUDE.md defines specific branch or commit conventions, those take priority over this skill.
+Buenas prácticas de Git para el flujo completo de desarrollo. Aplica a todos
+los proyectos; las convenciones del CLAUDE.md de cada proyecto tienen prioridad.
 
 ---
 
-## Branch Naming
+## Nomenclatura de ramas
 
-### Format
+### Formato
 ```
-<type>/<short-description>
+<tipo>/<descripcion-corta>
 ```
 
-### Types
-| Type | When to use |
-|------|-------------|
-| `feature/` | New functionality |
-| `fix/` | Bug fixes |
-| `hotfix/` | Urgent production fix |
-| `refactor/` | Code restructuring, no behavior change |
-| `chore/` | Maintenance, deps, config |
-| `docs/` | Documentation only |
-| `test/` | Adding or fixing tests |
+| Tipo | Cuándo usarlo |
+|------|---------------|
+| `feature/` | Nueva funcionalidad |
+| `fix/` | Corrección de bug |
+| `hotfix/` | Corrección urgente en producción |
+| `release/` | Preparación de release (solo Gitflow) |
+| `refactor/` | Reestructuración sin cambio de comportamiento |
+| `chore/` | Mantenimiento, dependencias, configuración |
+| `docs/` | Solo documentación |
+| `test/` | Agregar o corregir tests |
 
-### Rules
-- Use **kebab-case** (lowercase, hyphens)
-- Be descriptive but concise (3-5 words max)
-- No special characters except `-` and `/`
+### Reglas
+- **kebab-case** (minúsculas, guiones), sin caracteres especiales salvo `-` y `/`
+- Descriptiva pero concisa (3-5 palabras máximo)
 
-### Examples
 ```
 feature/user-authentication
 fix/null-pointer-login
 hotfix/payment-gateway-timeout
-refactor/order-service-cleanup
-chore/update-spring-dependencies
-docs/api-endpoints
+release/1.4.0
 ```
-
-### Project-specific override
-If the project's CLAUDE.md defines a branch convention (e.g. `feature/<TICKET-ID>/<author>`), that takes priority over this skill.
 
 ---
 
-## Commit Messages
+## Mensajes de commit (Conventional Commits)
 
-### Format (Conventional Commits)
+### Formato
 ```
-<type>(<scope>): <short description>
+<tipo>(<scope>): <descripción corta>
 
-[optional body]
+[cuerpo opcional]
 
-[optional footer]
+[footer opcional]
 ```
 
-### Types
-| Type | When to use |
-|------|-------------|
-| `feat` | New feature |
-| `fix` | Bug fix |
-| `refactor` | Refactoring |
-| `chore` | Maintenance, deps |
-| `docs` | Documentation |
+| Tipo | Cuándo |
+|------|--------|
+| `feat` | Nueva funcionalidad |
+| `fix` | Corrección de bug |
+| `refactor` | Refactorización |
+| `chore` | Mantenimiento, deps |
+| `docs` | Documentación |
 | `test` | Tests |
-| `style` | Formatting, no logic change |
-| `perf` | Performance improvement |
-| `ci` | CI/CD changes |
-| `revert` | Reverts a previous commit |
+| `style` | Formato, sin cambio de lógica |
+| `perf` | Mejora de rendimiento |
+| `ci` | Cambios de CI/CD |
+| `revert` | Revierte un commit previo |
 
-### Rules
-- Subject line: max **72 characters**
-- Use **imperative mood**: "add feature" not "added feature"
-- No period at the end of subject
-- Scope is optional but recommended
-- Body explains **what and why**, not how
+### Reglas
+- Asunto en **inglés**, máximo **72 caracteres**, **modo imperativo** ("add", no "added"), sin punto final
+- Scope opcional pero recomendado
+- El cuerpo explica **qué y por qué**, no cómo
+- Un cambio lógico por commit
 
-### Examples
 ```
-feat(auth): add JWT refresh token endpoint
+✅ feat(auth): add JWT refresh token endpoint
+✅ fix(catalog): resolve null price on out-of-stock items
+✅ chore(deps): upgrade Spring Boot to 3.4.2
 
-fix(catalog): resolve null price on out-of-stock items
-
-refactor(order-service): extract payment logic to dedicated class
-
-chore(deps): upgrade Spring Boot to 3.4.2
-
-docs(api): add endpoint descriptions to OpenAPI spec
-```
-
-### Bad commits to avoid
-```
-❌ fix bug
-❌ changes
-❌ WIP
-❌ updated stuff
-❌ asdfgh
+❌ fix bug   ❌ changes   ❌ WIP   ❌ updated stuff
 ```
 
 ---
 
-## Complete Git Workflow
+## Elegir el flujo: trunk-based vs Gitflow
 
-### Starting a new feature
+| Señal | Flujo |
+|---|---|
+| Proyecto personal, deploy continuo, una sola rama estable | **Trunk-based**: `feature/* → main` |
+| Equipo, releases versionados, rama `develop` existe en el remoto | **Gitflow**: `feature/* → develop`, `release/* → main`, `hotfix/* → main + develop` |
+
+Verifica primero: `git branch -r` — si existe `origin/develop`, el proyecto usa Gitflow.
+
+---
+
+## Flujo trunk-based (estándar)
 
 ```bash
-# Always branch from the latest main/develop
-git checkout main
-git pull origin main
-git checkout -b feature/my-new-feature
-```
+# Partir siempre del main actualizado
+git checkout main && git pull origin main
+git checkout -b feature/mi-nueva-funcionalidad
 
-### During development
-
-```bash
-# Check status frequently
+# Durante el desarrollo: commits pequeños y lógicos
 git status
-
-# Stage only related changes (avoid git add .)
-git add src/specific/file.java
-
-# Commit in small, logical units
+git add src/archivo/especifico.java   # evitar git add .
 git commit -m "feat(module): add specific behavior"
 
-# Keep branch up to date with main
-git fetch origin
-git rebase origin/main
-```
+# Mantener la rama al día
+git fetch origin && git rebase origin/main
 
-### Before opening a PR
-
-```bash
-# Make sure tests pass
-# Review your own diff
-git diff origin/main
-
-# Clean up commit history if needed
-git rebase -i origin/main
-```
-
-### Opening a PR
-
-PR title should follow the same Conventional Commits format:
-```
-feat(auth): add JWT refresh token endpoint
-```
-
-PR description should include:
-- **What** was changed and **why**
-- How to test it
-- Screenshots if UI change
-- Reference to ticket/issue if applicable
-
-### Merging
-
-Preferred strategy: **Squash and merge** for feature branches (keeps main history clean).
-
-Use **Merge commit** only when preserving full history is important (e.g. long-lived release branches).
-
-Never merge directly to `main` without a PR review.
-
-### After merging
-
-```bash
-# Delete local branch
-git branch -d feature/my-new-feature
-
-# Delete remote branch
-git push origin --delete feature/my-new-feature
-
-# Update local main
-git checkout main
-git pull origin main
+# Al terminar: push y PR
+git push -u origin feature/mi-nueva-funcionalidad
 ```
 
 ---
 
-## Hotfix Flow
+## Flujo Gitflow
 
 ```bash
-# Branch from main (not develop)
-git checkout main
-git pull origin main
-git checkout -b hotfix/critical-bug-description
+# FEATURE — sale de develop y vuelve a develop
+git checkout develop && git pull origin develop
+git checkout -b feature/mi-funcionalidad
+# ... desarrollo, commits, push ...
+# PR: feature/mi-funcionalidad → develop
 
-# Fix, commit, push
-git commit -m "hotfix(module): fix critical issue description"
-git push origin hotfix/critical-bug-description
+# RELEASE — congela develop para estabilizar
+git checkout develop && git pull origin develop
+git checkout -b release/1.4.0
+# solo fixes y ajustes de versión; PR: release/1.4.0 → main
+# tras el merge a main: taggear y mergear main de vuelta a develop
+git tag v1.4.0 && git push origin v1.4.0
 
-# Open PR to main
-# After merge, also merge main back into develop
-git checkout develop
-git merge main
+# HOTFIX — sale de main (no de develop)
+git checkout main && git pull origin main
+git checkout -b hotfix/descripcion-del-bug
+git commit -m "fix(module): fix critical issue"
+# PR: hotfix → main; tras el merge, llevar el fix también a develop:
+git checkout develop && git pull origin develop
+git merge main && git push origin develop
+```
+
+**Regla de oro Gitflow:** todo lo que llega a `main` debe terminar también en
+`develop` (vía merge de vuelta), o el próximo release revierte el hotfix.
+
+---
+
+## Pull Requests
+
+- Título con formato Conventional Commits: `feat(auth): add JWT refresh token endpoint`
+- Descripción: **qué** cambió y **por qué**, cómo probarlo, screenshots si hay UI, referencia al ticket/issue
+- Nunca mergear a `main` o `develop` sin revisión
+
+### Con gh CLI
+```bash
+gh pr create --base develop --title "feat(auth): add refresh token" --body "..."
+gh pr view 42 --comments      # ver un PR
+gh pr diff 42                 # ver el diff
+gh pr merge 42 --squash --delete-branch
+```
+
+### Estrategia de merge
+- **Squash and merge** para features (historial de main limpio) — preferido
+- **Merge commit** solo cuando importa preservar el historial completo (ramas release largas)
+- **Rebase and merge** solo con commits ya limpios y atómicos
+
+### Después del merge
+```bash
+git branch -d feature/mi-funcionalidad
+git push origin --delete feature/mi-funcionalidad   # si gh no la borró
+git checkout main && git pull origin main
 ```
 
 ---
 
-## Conflict Resolution
+## Resolución de conflictos
 
 ```bash
-# See which files have conflicts
-git status
-
-# After manually resolving conflicts in each file
-git add src/resolved/file.java
-
-# Continue rebase or merge
-git rebase --continue
-# or
-git merge --continue
-
-# If things go wrong, abort and start over
-git rebase --abort
-git merge --abort
+git status                        # ver archivos en conflicto
+# resolver manualmente cada archivo
+git add src/archivo/resuelto.java
+git rebase --continue             # o: git merge --continue
+# si algo sale mal: abortar y empezar de nuevo
+git rebase --abort                # o: git merge --abort
 ```
 
-### Rules for conflict resolution
-- Never blindly accept "ours" or "theirs" — understand both changes
-- Run tests after resolving before committing
-- If unsure about a conflict, ask the author of the conflicting code
+**Reglas:**
+- Nunca aceptar "ours"/"theirs" a ciegas — entender ambos cambios
+- Correr los tests después de resolver, antes de commitear
+- Ante dudas, preguntar al autor del código en conflicto
 
 ---
 
-## General Rules
+## Comandos interactivos — limitaciones
 
-- **Never force push to main or develop**
-- **Never commit secrets**, API keys, passwords, or `.env` files
-- Keep `.gitignore` updated before first commit
-- One logical change per commit
-- A branch should be short-lived (days, not weeks)
-- If a branch lives too long, sync with main via rebase frequently
+`git rebase -i` y `git add -i` abren un editor interactivo y **no funcionan
+en agentes ni CI**. Alternativas no interactivas:
+
+```bash
+git rebase origin/main                  # sincronizar sin reordenar commits
+git commit --amend -m "nuevo mensaje"   # corregir el último commit (solo local)
+# para aplastar commits: usar "Squash and merge" en el PR
+```
+
+---
+
+## Reglas generales
+
+- **Nunca** force push a `main` o `develop`
+- **Nunca** commitear secretos, API keys, contraseñas ni archivos `.env`
+- Mantener `.gitignore` actualizado antes del primer commit
+- Ramas de vida corta (días, no semanas); si se alarga, rebase frecuente con la base
+- Un cambio lógico por commit; revisar el propio diff antes del PR (`git diff origin/main`)

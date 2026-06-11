@@ -4,27 +4,26 @@
 
 ### Setup
 ```python
-import google.generativeai as genai
+# SDK actual: google-genai (google-generativeai está deprecado)
+# pip install google-genai
+from google import genai
+from google.genai import types
 from app.config import settings
 
-genai.configure(api_key=settings.gemini_api_key)
-model = genai.GenerativeModel("gemini-2.5-flash")
+client = genai.Client(api_key=settings.gemini_api_key)
 ```
 
 ### Análisis de imágenes
 ```python
-import base64
-from pathlib import Path
-
 async def analyze_image(image_bytes: bytes, prompt: str) -> dict:
-    image_part = {
-        "inline_data": {
-            "mime_type": "image/jpeg",
-            "data": base64.b64encode(image_bytes).decode(),
-        }
-    }
-    response = model.generate_content([prompt, image_part])
-    return {"text": response.text, "confidence": 1.0}
+    response = await client.aio.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=[
+            types.Part.from_bytes(data=image_bytes, mime_type="image/jpeg"),
+            prompt,
+        ],
+    )
+    return {"text": response.text}
 ```
 
 ### Batching para respetar rate limits

@@ -260,7 +260,7 @@ result = await asyncio.get_event_loop().run_in_executor(None, sync_function, arg
 
 ### Validación con Pydantic
 ```python
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator  # v2: field_validator, no validator
 from typing import Optional
 from decimal import Decimal
 
@@ -298,6 +298,49 @@ pytest tests/ --cov=app --cov-report=html  # con cobertura
 alembic revision --autogenerate -m "descripción"
 alembic upgrade head
 ```
+
+---
+
+## Integración con n8n
+
+### Recibir webhooks de n8n
+```python
+# routers/webhooks.py — validar SIEMPRE un secret compartido
+from fastapi import APIRouter, BackgroundTasks, Header, HTTPException
+
+router = APIRouter(prefix="/api/webhooks", tags=["webhooks"])
+
+@router.post("/n8n/{event}")
+async def n8n_webhook(
+    event: str,
+    payload: dict,
+    background_tasks: BackgroundTasks,
+    x_webhook_secret: str = Header(...),
+):
+    if x_webhook_secret != settings.n8n_webhook_secret:
+        raise HTTPException(status_code=401, detail="Secret inválido")
+    # Responder rápido (n8n tiene timeout) — procesar en background
+    background_tasks.add_task(process_event, event, payload)
+    return {"status": "received"}
+```
+
+### Disparar un workflow de n8n
+```python
+import httpx
+
+async def trigger_n8n_workflow(workflow_path: str, data: dict) -> dict:
+    async with httpx.AsyncClient(timeout=30) as client:
+        r = await client.post(
+            f"{settings.n8n_base_url}/webhook/{workflow_path}",
+            json=data,
+        )
+        r.raise_for_status()
+        return r.json()
+```
+
+Buenas prácticas: secret compartido en ambas direcciones, idempotencia
+(n8n puede reintentar), y nunca lógica de negocio crítica solo en n8n —
+el backend es la fuente de verdad.
 
 ---
 

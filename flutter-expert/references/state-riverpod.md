@@ -17,9 +17,9 @@ void main() {
 // Estado simple inmutable
 final contadorProvider = StateProvider<int>((ref) => 0);
 
-// Estado con lógica (reemplaza ChangeNotifier)
-final productosProvider = StateNotifierProvider<ProductosNotifier, ProductosState>(
-  (ref) => ProductosNotifier(ref),
+// Estado con lógica (Riverpod 2+, reemplaza ChangeNotifier/StateNotifier)
+final productosProvider = NotifierProvider<ProductosNotifier, ProductosState>(
+  ProductosNotifier.new,
 );
 
 // Future (llamadas async, se integra con AsyncValue)
@@ -40,7 +40,7 @@ final apiServiceProvider = Provider<ApiService>((ref) {
 });
 ```
 
-## StateNotifier — equivalente a ChangeNotifier
+## Notifier — equivalente a ChangeNotifier (Riverpod 2+)
 
 ```dart
 // Estado inmutable (idealmente con freezed)
@@ -53,22 +53,30 @@ class ProductosState with _$ProductosState {
   }) = _ProductosState;
 }
 
-class ProductosNotifier extends StateNotifier<ProductosState> {
-  ProductosNotifier(this._ref) : super(const ProductosState());
-
-  final Ref _ref;
+class ProductosNotifier extends Notifier<ProductosState> {
+  @override
+  ProductosState build() => const ProductosState();
 
   Future<void> fetch(String slug) async {
     state = state.copyWith(isLoading: true, error: null);
     try {
-      final productos = await _ref.read(apiServiceProvider).getProductos(slug);
+      final productos = await ref.read(apiServiceProvider).getProductos(slug);
       state = state.copyWith(productos: productos, isLoading: false);
     } catch (e) {
       state = state.copyWith(error: e.toString(), isLoading: false);
     }
   }
 }
+
+// Para estado 100% async usar AsyncNotifier + AsyncValue
+class CatalogoNotifier extends AsyncNotifier<Catalogo> {
+  @override
+  Future<Catalogo> build() => ref.read(apiServiceProvider).getCatalogo();
+}
 ```
+
+**Nota:** `StateNotifier`/`StateNotifierProvider` son legacy. Si el proyecto
+ya los usa, mantenerlos (no mezclar); en código nuevo usar `Notifier`/`AsyncNotifier`.
 
 ## ConsumerWidget — widget que lee providers
 
