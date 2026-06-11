@@ -16,6 +16,10 @@ Fuente de verdad de mis skills personales de Claude Code. Los directorios en
 | n8n-expert | Workflows n8n (webhooks, HTTP, WhatsApp Business, patrones robustos) |
 | git-best-practices | Ramas, Conventional Commits, PRs, Gitflow |
 | project-onboarding | Entender y configurar cualquier proyecto desde cero |
+| app-security | Revisión de seguridad defensiva por stack: detectar y corregir |
+| product-owner | Roadmaps, backlog SCRUM, specs técnicas, ADRs |
+| tech-proposals | Propuestas comerciales B2B, pricing COP/USD, Word/PDF |
+| content-automation | Contenido con IA + distribución n8n (embudo WhatsApp de Vantedge) |
 
 ## Nota: ui-ux-pro-max
 
