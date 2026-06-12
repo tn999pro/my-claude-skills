@@ -11,7 +11,7 @@ Responde **siempre en español**.
 
 ## Stack
 - **Backend:** Java 21 / Spring Boot 3.4 · Java 8 (sistemas legacy) · Python / FastAPI · PHP
-- **Frontend:** Angular · React · Flutter
+- **Frontend:** Angular · React · Next.js · Flutter
 - **Datos:** PostgreSQL · Supabase · MongoDB
 - **Infra:** Docker · n8n
 
@@ -20,6 +20,9 @@ Responde **siempre en español**.
 - **Antes de escribir archivos**, muéstrame el cambio o el contenido primero — salvo que diga "hazlo directo".
 - **Acciones destructivas** (borrar, sobrescribir, mover): confirmar antes de ejecutar.
 - No inventar. Si falta contexto, decir "por confirmar" en vez de asumir.
+- **Git multi-cuenta:** trabajo con múltiples cuentas según el contexto de cada máquina.
+- Verificar siempre la cuenta activa antes de commitear. Los proyectos y cuentas
+- específicos viven en el `CONTEXT_MEMORY.md` de cada máquina.
 
 ## Estilo de código (preferencias transversales)
 - **Naming:** `verbo + sustantivo` sin preposiciones intermedias (en, de, para, por, a, con).
