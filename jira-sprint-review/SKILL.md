@@ -61,9 +61,13 @@ the user in one line** so expectations are set up front:
 1. **Atlassian MCP connected?** Check whether Jira/Atlassian tools are actually
    available this session (not just whether the user mentioned Jira). If they are
    **not** available, say so explicitly — don't silently proceed and then fail at
-   Phase 1. Offer the two paths:
-   - *Connect it* — point to `references/connection-setup.md` (`claude mcp add …`
-     + `/mcp` OAuth), then run the full workflow.
+   Phase 1. Offer the paths, in this order of preference:
+   - *Token helper (preferred when the MCP is flaky/absent)* — the REST + API
+     token path in `references/jira-rest.md` (`scripts/jira.ps1`). Basic auth that
+     persists, so no OAuth/SSE re-auth churn. If `JIRA_BASE`, `JIRA_EMAIL` and
+     `JIRA_TOKEN` are set, prefer this over the MCP for a deterministic run.
+   - *Connect the MCP* — point to `references/connection-setup.md` (`claude mcp
+     add …` + `/mcp` OAuth), then run the full workflow.
    - *Code-only fallback* — if the user already provides the issue list
      (a pasted backlog, a planning doc, ticket IDs + summaries), skip Phase 1 and
      run Phases 2–4 against the repo anyway. This still delivers the core value
