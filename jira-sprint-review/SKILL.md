@@ -53,6 +53,29 @@ issue state.
 Work through these phases in order. Don't skip the code-reading phase — it's the
 whole point.
 
+### Phase 0 — Preflight (do this first, always)
+
+Before pulling anything, check both prerequisites and **announce their status to
+the user in one line** so expectations are set up front:
+
+1. **Atlassian MCP connected?** Check whether Jira/Atlassian tools are actually
+   available this session (not just whether the user mentioned Jira). If they are
+   **not** available, say so explicitly — don't silently proceed and then fail at
+   Phase 1. Offer the two paths:
+   - *Connect it* — point to `references/connection-setup.md` (`claude mcp add …`
+     + `/mcp` OAuth), then run the full workflow.
+   - *Code-only fallback* — if the user already provides the issue list
+     (a pasted backlog, a planning doc, ticket IDs + summaries), skip Phase 1 and
+     run Phases 2–4 against the repo anyway. This still delivers the core value
+     (what's already built, what overlaps), but flag clearly that "done vs.
+     partial" is judged against the **provided descriptions**, not the real Jira
+     acceptance criteria — those points stay "to confirm" until the MCP is up.
+2. **Repository accessible?** Confirm you're in (or have read access to) the right
+   codebase. If not, ask which repo/path before cross-referencing.
+
+Only continue once you've stated which mode you're in. Never present a code-only
+run as if it had verified the live backlog.
+
 ### Phase 1 — Pull the backlog
 
 1. Get the `cloudId` (the MCP exposes a resources/accessible-resources tool).
