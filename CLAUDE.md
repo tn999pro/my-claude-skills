@@ -20,9 +20,10 @@ Responde **siempre en español**.
 - **Antes de escribir archivos**, muéstrame el cambio o el contenido primero — salvo que diga "hazlo directo".
 - **Acciones destructivas** (borrar, sobrescribir, mover): confirmar antes de ejecutar.
 - No inventar. Si falta contexto, decir "por confirmar" en vez de asumir.
-- **Git multi-cuenta:** trabajo con múltiples cuentas según el contexto de cada máquina.
-- Verificar siempre la cuenta activa antes de commitear. Los proyectos y cuentas
-- específicos viven en el `CONTEXT_MEMORY.md` de cada máquina.
+- **Git multi-cuenta:** trabajo con varias cuentas de GitHub según el repo. Cada
+  repo fija su identidad con `git config --local`; **verificar `user.email` antes
+  de commitear** (el email global puede no ser el correcto). Los proyectos y
+  cuentas específicos viven en el `CONTEXT_MEMORY.md` de cada máquina.
 
 ## Estilo de código (preferencias transversales)
 - **Naming:** `verbo + sustantivo` sin preposiciones intermedias (en, de, para, por, a, con).
@@ -33,6 +34,9 @@ Responde **siempre en español**.
 ## Skills
 - Los skills globales viven en `~/.claude/skills/` (symlinks al repo `my-claude-skills`).
 - Úsalos cuando apliquen, sin pedir permiso.
+- `jira-sprint-review`: cruza issues de Jira contra el código y arma el plan del
+  sprint. Acceso a Jira por **API token (Basic auth)**, preferido sobre el MCP de
+  Atlassian (OAuth/SSE inestable). Setup en `jira-sprint-review/references/jira-rest.md`.
 
 ## Estado del ecosistema
 - Al iniciar una sesión, **lee `~/.claude/CONTEXT_MEMORY.md`** para el estado actual de mis proyectos y cómo se comunican entre sí.
