@@ -1,16 +1,17 @@
 ---
 name: project-onboarding
 description: |
-  Analiza, entiende y configura el entorno de cualquier proyecto de software desde cero.
-  Úsala SIEMPRE que el usuario mencione cualquiera de estos escenarios:
-  - "acabo de clonar este repositorio", "ayúdame a entender este proyecto", "configura el entorno"
-  - "qué tecnologías usa este proyecto", "no puedo correr el proyecto", "faltan dependencias"
-  - "qué plugins necesito", "cómo instalo todo", "prepara el proyecto para trabajar"
-  - El usuario abre una carpeta/proyecto nuevo y quiere empezar a trabajar en él
-  - Hay errores de configuración, versiones incorrectas, o dependencias faltantes
-  - El usuario quiere un resumen técnico del stack del proyecto
-  Aplica para proyectos web frontend (React, Vue, Svelte), backend/APIs (Node, Python, Go, Java),
-  mobile (Flutter, React Native), y data/ML (Python, Jupyter, notebooks).
+  Detecta el stack, instala dependencias y deja cualquier proyecto listo para correr.
+  Úsala SIEMPRE que el usuario diga: "acabo de clonar este repositorio", "configura el
+  entorno", "prepara el proyecto para trabajar", "no puedo correr el proyecto", "faltan
+  dependencias", "qué plugins necesito", "qué tecnologías usa esto"; cuando abra una
+  carpeta nueva y quiera empezar a trabajar; o cuando haya errores de configuración,
+  versiones incorrectas o dependencias faltantes. Aplica a frontend (React, Vue, Svelte),
+  backend (Node, Python, Go, Java), mobile (Flutter, React Native) y data/ML.
+  ALCANCE: deja el proyecto CORRIENDO. No escribe documentación de contexto (CLAUDE.md,
+  docs/, CONTEXT_MEMORY.md) — para eso existe `project-context`. Si el usuario pide
+  "documenta el proyecto" o "genera el CLAUDE.md" sin pedir levantarlo, usar
+  `project-context` en lugar de esta skill.
 ---
 
 # Project Onboarding & Environment Setup
@@ -122,6 +123,25 @@ Termina con:
 2. **Lista de lo que hiciste** (instalé X, detecté Y, creé Z)
 3. **Comando para arrancar** el proyecto
 4. **Próximos pasos recomendados** (máximo 3)
+
+### FASE 7 — Contexto persistente
+
+Verifica si existe `CLAUDE.md` en la raíz.
+
+**Si no existe**, cierra con esto y detente ahí:
+
+> Este repositorio no tiene `CLAUDE.md`, así que cada sesión nueva de Claude va a
+> empezar desde cero — vuelvo a escanear el stack y vuelvo a deducir las convenciones,
+> a veces mal. Puedo documentarlo una sola vez con la skill `project-context`: lee el
+> código, te muestra lo que encontró para que lo corrijas, y escribe `CLAUDE.md` más
+> `docs/` y `CONTEXT_MEMORY.md`. Toma unos minutos. ¿Lo corro?
+
+No arranques `project-context` sin confirmación: escribe archivos que se van a commitear
+al repositorio, y esa decisión es del usuario.
+
+**Si ya existe**, léelo y reporta en una línea si lo que encontraste en la Fase 1
+contradice lo que dice (versiones distintas, comandos que ya no existen). Un `CLAUDE.md`
+desactualizado hace más daño que uno ausente.
 
 ---
 
