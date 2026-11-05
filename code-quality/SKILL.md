@@ -2,17 +2,12 @@
 name: code-quality
 description: |
   Experto en calidad de código, refactorización, seguridad y escalabilidad.
-  Actívala SIEMPRE en estos contextos:
-  - "revisa este código", "encuentra errores", "qué está mal aquí", "audita esto"
-  - "refactoriza", "mejora este código", "simplifica", "hay código duplicado"
-  - "hay deuda técnica", "el código está sucio", "esto no escala", "es mantenible?"
-  - "haz un code review", "revisa este PR", "antes del deploy", "antes del release"
-  - "cómo mejoro la arquitectura", "hay vulnerabilidades", "es seguro esto?"
-  - "encuentra bugs", "qué puede fallar aquí", "qué tan robusto es esto"
-  - "cobertura de tests", "faltan tests", "qué debería testear"
-  - "hay code smells", "acoplamiento alto", "difícil de mantener"
-  - Cualquier solicitud de revisión, mejora o análisis de código existente
-  Funciona con cualquier lenguaje: Java, Python, Dart, TypeScript, JavaScript, Go, etc.
+  Actívala SIEMPRE ante cualquier solicitud de revisión, mejora o análisis
+  de código existente: "revisa este código", "audita esto", "refactoriza",
+  "haz un code review", "hay deuda técnica", "es seguro esto?", "encuentra
+  bugs", "qué puede fallar", "faltan tests", "hay code smells", "esto no
+  escala", "antes del deploy/release".
+  Funciona con cualquier lenguaje: Java, Python, Dart, TypeScript, Go, etc.
   Genera reporte clasificado por prioridad con ejemplos de código corregido.
 ---
 
@@ -26,21 +21,15 @@ sino que muestras exactamente cómo corregirlos con código.
 
 ## FASE 0 — Reconocimiento del proyecto (SIEMPRE PRIMERO)
 
-```bash
-# Detectar lenguaje y stack
-cat CLAUDE.md 2>/dev/null || echo "Sin CLAUDE.md"
+Usa las herramientas del entorno (Read, Glob, Grep) — funcionan igual en
+Windows, Linux y Mac:
 
-# Ver estructura general
-find . -type f \( -name "*.java" -o -name "*.py" -o -name "*.dart" -o -name "*.ts" \) \
-  | grep -v -E "(__pycache__|node_modules|\.venv|build|dist|\.git)" \
-  | head -40
-
-# Dependencias / versiones
-cat pom.xml 2>/dev/null | grep -A2 "<dependency>" | head -60
-cat requirements.txt 2>/dev/null || cat pyproject.toml 2>/dev/null
-cat pubspec.yaml 2>/dev/null
-cat package.json 2>/dev/null | head -40
-```
+1. **Lee `CLAUDE.md`** del proyecto si existe — define stack y convenciones.
+2. **Estructura general** con Glob: `**/*.java`, `**/*.py`, `**/*.dart`,
+   `**/*.{ts,tsx}` (ignora `node_modules`, `.venv`, `build`, `dist`, `__pycache__`).
+3. **Dependencias y versiones**: lee el manifiesto que exista —
+   `pom.xml` / `build.gradle`, `requirements.txt` / `pyproject.toml`,
+   `pubspec.yaml`, `package.json`.
 
 Con esto determina:
 1. **Lenguaje y framework** → reglas específicas a aplicar
@@ -53,21 +42,17 @@ Con esto determina:
 ## FASE 1 — Análisis del código objetivo
 
 Si el usuario pasa un archivo o función específica, analízala en profundidad.
-Si pide un análisis general del proyecto, escanea los módulos principales:
+Si pide un análisis general del proyecto, escanea los módulos principales
+buscando con Grep estos patrones problemáticos (adaptar al lenguaje):
 
-```bash
-# Buscar patrones problemáticos comunes (adaptar al lenguaje)
-# Java
-grep -rn "printStackTrace\|System.out.print\|TODO\|FIXME\|HACK" src/ 2>/dev/null | head -20
-grep -rn "catch.*Exception\s*{" src/ 2>/dev/null | head -20
-
-# Python
-grep -rn "except:\|print(\|TODO\|FIXME\|pass$" . --include="*.py" 2>/dev/null | head -20
-
-# General — credenciales hardcodeadas
-grep -rn "password\s*=\s*['\"][^'\"]\|secret\s*=\s*['\"][^'\"]\|api_key\s*=\s*['\"][^'\"]" . \
-  --include="*.java" --include="*.py" --include="*.dart" --include="*.ts" 2>/dev/null
-```
+| Lenguaje | Patrón (regex para Grep) | Qué detecta |
+|---|---|---|
+| Java | `printStackTrace\|System\.out\.print` | Logging incorrecto |
+| Java | `catch\s*\(\s*Exception` | Excepciones genéricas |
+| Python | `except\s*:` | except vacío |
+| Python | `print\(` | print en vez de logger |
+| Todos | `TODO\|FIXME\|HACK` | Deuda marcada |
+| Todos | `(password\|secret\|api_key)\s*=\s*['"][^'"]` | Credenciales hardcodeadas |
 
 ---
 
@@ -112,7 +97,6 @@ patrones modernos, documentación, naming.
 📊 RESUMEN
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🔴 Críticos: N   🟡 Medios: N   🟢 Bajos: N
-Deuda técnica estimada: X horas
 Próximo paso recomendado: [acción concreta]
 ```
 
@@ -202,7 +186,7 @@ Consulta el archivo de referencia específico antes de analizar:
 - **Java / Spring Boot** → `references/java-spring.md`
 - **Python / FastAPI / Django** → `references/python-fastapi.md`
 - **Dart / Flutter** → `references/dart-flutter.md`
-- **TypeScript / JavaScript** → `references/typescript.md`
+- **TypeScript / JavaScript / React / Next.js** → `references/typescript.md`
 
 ---
 
