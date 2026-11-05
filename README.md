@@ -20,6 +20,7 @@ Fuente de verdad de mis skills personales de Claude Code. Los directorios en
 | product-owner | Roadmaps, backlog SCRUM, specs técnicas, ADRs |
 | tech-proposals | Propuestas comerciales B2B, pricing COP/USD, Word/PDF |
 | content-automation | Contenido con IA + distribución n8n (embudo WhatsApp de Vantedge) |
+| pc-optimizer | Diagnóstico y optimización de PCs Windows (hardware, memoria, disco, cachés de desarrollo) |
 
 ## Plugins (no se duplican en este repo)
 
@@ -33,4 +34,5 @@ Fuente de verdad de mis skills personales de Claude Code. Los directorios en
 - Cada skill: `SKILL.md` con frontmatter YAML (`name`, `description` con
   triggers) + `references/` para material extenso.
 - Idioma: español; identificadores y comandos en su forma original.
-- Commits: Conventional Commits en inglés, sin firma de Claude.
+- Commits: Conventional Commits en español, sin firma de Claude.
+- `git-hooks/commit-msg` quita la firma de IA de los commits; instalar con `git-hooks/instalar-hook-commit.ps1`.
