@@ -21,6 +21,7 @@ Fuente de verdad de mis skills personales de Claude Code. Los directorios en
 | tech-proposals | Propuestas comerciales B2B, pricing COP/USD, Word/PDF |
 | content-automation | Contenido con IA + distribución n8n (embudo WhatsApp de Vantedge) |
 | pc-optimizer | Diagnóstico y optimización de PCs Windows (hardware, memoria, disco, cachés de desarrollo) |
+| vantedge-contenido | Estados de WhatsApp, posts y reels de Vantedge: marca, voz, formato 1080×1920 y reglas de publicación |
 
 ## Plugins (no se duplican en este repo)
 
