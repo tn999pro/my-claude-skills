@@ -50,6 +50,7 @@ Vantedge Technologies es la agencia de Brando en Cali: automatiza el trabajo man
 - 40 % servicio (un caso concreto de automatización), 30 % prueba real (grabación de pantalla del agente o capturas de trabajos reales, sin datos de clientes), 20 % dolor o tip, 10 % persona (Brando en cámara o Valeria).
 - Incluye al menos una pieza de interacción (encuesta numerada, pregunta) y cierra la semana con el lema.
 - Temas para rotar: clientes en visto, pedidos al Excel, chat al CRM, cobros, reporte de ventas, cotizaciones, agenda de citas, publicaciones en redes, documentos y facturas.
+- Público amplio, sin nicho fijo: el gancho habla del dolor universal y los ejemplos rotan de sector (ferretería, droguería, consultorio, taller, tienda de ropa, restaurante, construcción…) para que cada contacto se vea en alguno. Nunca dos estados seguidos del mismo sector. Si un ejemplo no necesita sector, usa uno genérico ("¿tienen disponible? ¿cuánto vale?").
 - No repitas un gancho ya publicado; revisa las filas anteriores del lienzo.
 - Si no hay material de prueba real, no lo inventes: deja el hueco y pídeselo a Brando.
 
@@ -69,7 +70,7 @@ Vantedge Technologies es la agencia de Brando en Cali: automatiza el trabajo man
 
 ## Flujo de trabajo
 
-1. Confirma tema, nicho (por defecto pymes de comercio en Cali) y cantidad. Si Brando no lo dice, propón la semana según la mezcla.
+1. Confirma tema y cantidad (el público es amplio: pymes de cualquier sector en Cali). Si Brando no lo dice, propón la semana según la mezcla y la rotación de sectores.
 2. Muestra primero los ganchos y el texto al publicar de cada pieza y espera su aprobación antes de diseñar.
 3. Diseña con el sistema visual de arriba, en el lienzo de estados (o en HTML 1080×1920 renderizado a PNG en Claude Code).
 4. Revisa antes de entregar: el gancho empieza por el dolor, hay un solo resaltado azul, ninguna palabra prohibida, márgenes de 260 px libres, logo con "VANTEDGE" completo, cifras como placeholder o "Ejemplo", palabra clave en el texto al publicar.
