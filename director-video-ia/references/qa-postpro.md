@@ -7,6 +7,7 @@ Casi ningún video sale bien a la primera. El trabajo es probar, mirar con crite
 - [ ] **Rostro:** sin deformaciones, ojos coherentes, consistente con el character sheet.
 - [ ] **Bordes y fondo:** sin objetos que aparecen/desaparecen, sin derretimientos.
 - [ ] **Texto fantasma:** letras inventadas en carteles, empaques o pantallas.
+- [ ] **Integridad de objetos en contacto:** en cada momento en que dos objetos se tocan (utensilio y recipiente, mano y objeto, líquido y vaso) extrae cuadros cada 0.5 s desde un segundo antes hasta un segundo después. Busca recipientes que se funden con su contenido, objetos que desaparecen de la mano y bordes que quedan "mordidos" el resto de la toma. Si el defecto sigue hasta el final, recortar no sirve: regenera con primer y último cuadro.
 - [ ] **Texto del producto al 100 %:** antes de animar, revisa cada imagen de entrada (madre y derivadas) al tamaño original, letra por letra contra la foto real, incluidos apóstrofes y tildes. Después, extrae cuadros del video donde la etiqueta se ve más grande y repite la comparación.
 - [ ] **Producto:** fiel al real (forma, color, proporciones). Si el cliente no lo reconoce, la toma no sirve.
 - [ ] **Acción:** hace lo que pide el `STORYLINE`, en orden.

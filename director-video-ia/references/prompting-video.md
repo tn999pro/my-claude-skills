@@ -85,5 +85,14 @@ Reglas:
 - Resolución: 720p para pruebas; 1080p/4K solo en la versión aprobada (el costo en créditos puede triplicarse).
 - Audio: actívalo solo si la toma lleva voz/SFX del modelo; si la música va en post, pide `no music`.
 
+## Acciones con contacto entre objetos
+Los modelos de video confunden los límites entre objetos que se tocan: un vaso se funde con el helado cuando entra la cuchara, un objeto desaparece de la mano al morderlo, un borde queda deformado el resto de la toma. Probado con Veo 3.1 Fast (muñeco comiendo helado con cuchara, nov 2026).
+- **Evita el contacto en el diseño:** en lugar de "mete la cuchara al vaso y come", "la cuchara deja caer una bola de helado sobre la mesa y él se lanza a comerla". Nada entra al recipiente y el personaje no sostiene nada.
+- **Fija el final:** usa primer y último cuadro, con el último mostrando el resultado limpio (vaso intacto, personaje con el helado en la cara). El modelo ya no tiene que inventar cómo quedan los objetos.
+- **Escríbelo explícito:** "el vaso de vidrio es sólido y permanece intacto y sin cambios", "no aparecen ni desaparecen objetos".
+- Si un objeto tiene que ir en la mano, que lo tenga desde el primer cuadro y lo conserve hasta el último.
+- **El último cuadro debe coincidir con el encuadre final.** Si el prompt pide un acercamiento (push-in) pero el último cuadro está más abierto, el modelo acerca y al final "salta" hacia atrás para llegar a ese cuadro. Usa cámara fija, genera el último cuadro ya con el encuadre cerrado, o recorta el último segundo en postproducción.
+- **Da el tamaño de lo que cae o se sirve** ("una bola del tamaño de su cabeza"): sin eso el modelo puede hacerla gigante.
+
 ## Cómo iterar el prompt
 Cambia una variable a la vez y di exactamente qué falló ("salta en vez de correr", "el rostro queda muy lejos") en lugar de reescribir todo.

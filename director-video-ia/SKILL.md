@@ -102,6 +102,7 @@ Patrones de cuadros que protegen el producto (ver `references/prompting-video.md
 - **Transición de luz:** primer cuadro = versión oscura, último cuadro = imagen madre iluminada. El modelo solo anima la luz; el último cuadro ya trae la etiqueta correcta.
 - **Producto inmóvil:** misma imagen como primer **y** último cuadro. Solo se mueven humo, luz y partículas; el producto no puede cambiar.
 - **Logos pequeños en relieve:** no los animes con IA; usa la foto real con zoom lento en postproducción.
+- **Acciones con contacto entre objetos** (una cuchara que entra a un vaso, una mano que sostiene algo, un líquido que se sirve): es donde los modelos fallan más (el vaso se funde con el helado, el objeto desaparece de la mano). Diseña la acción para evitar el contacto o fíjala con primer **y** último cuadro. Ver `references/prompting-video.md`.
 
 ### Fase 7 — QA y postproducción
 Lee `references/qa-postpro.md`.
@@ -122,6 +123,8 @@ Lee `references/qa-postpro.md`.
 - Saltar a prompts de video sin first frames aprobados: es la forma más cara de iterar.
 - Aprobar una imagen mirando la etiqueta a baja resolución, o revisar solo la imagen madre y no sus derivadas.
 - Rodear con la cámara un producto con texto.
+- Revisar cuadros cada 1–2 s en tomas con contacto entre objetos: los errores duran medio segundo y caen entre muestras. Ahí se revisa cada 0.5 s.
+- Pedirle a Google (Flow, Veo, Nano Banana) que transforme fotos reales de menores: lo bloquea su política (sin cobrar). Usa la foto real sin transformar dentro del montaje, o un personaje inventado que no sea su retrato.
 - Prompts de un párrafo desordenado: el modelo improvisa los huecos.
 - Pedirle al modelo que escriba el nombre del negocio, el precio o el logo.
 - Recomendar un modelo "porque es el mejor" sin atarlo a la necesidad de la toma.

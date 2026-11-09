@@ -45,5 +45,10 @@ Describe lugar, hora del día, luz, clima y elementos de fondo. Es el ingredient
 ## Componer una escena
 Sube las **fichas** (no las imágenes sueltas) + la imagen del entorno y describe la escena: acción, plano y luz. Itera si el personaje sale haciendo otra acción o demasiado lejos para reconocer el rostro.
 
+## Personas reales y menores
+- Para un adulto (con su consentimiento), las fotos reales sirven como referencia para fichas, muñecos, versiones animadas, etc.
+- Google (Flow, Nano Banana, Veo) bloquea por política transformar fotos reales de menores, también en estilo muñeco o animado, y no cobra el intento. TikTok elimina contenido sintético con la imagen de menores. Alternativas: la foto real sin transformar dentro del montaje (p. ej. al inicio y al cierre) o un personaje inventado que la represente sin ser su retrato (p. ej. una conejita de juguete "La Jefa").
+- Revisa en cada imagen generada detalles inventados que no están en la referencia (tatuajes, lunares, accesorios) y corrígelos con una edición antes de animar.
+
 ## Personaje recurrente de marca
 Para una vocera o mascota que aparece en muchos videos: guarda su character sheet aprobado y su descripción textual canónica como asset fijo y reutilízalo en cada producción. Cambiarla entre videos destruye el reconocimiento de marca.
