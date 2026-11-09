@@ -10,7 +10,7 @@ Un prompt corto deja huecos y el modelo los llena a su criterio (cámara rara, a
 | `STORYLINE` | Acción concreta y su progresión (corre → salta al borde → golpe) | Una acción vaga ("corre") |
 | `AESTHETIC` | Look (cinematográfico, natural, saturado o no), paleta hex, lente, movimiento y velocidad de cámara | Olvidar la cámara |
 | `ACTION SEQUENCE` | Solo modelos multishot: planos en orden dentro de una generación | Usarlo en modelos de un solo plano |
-| `NEGATIVE` | Lo que no debe aparecer | No ponerlo y que salga texto o manos deformes |
+| `NEGATIVE` | Lo que no debe aparecer. Formato por modelo: **Veo** sustantivos sin "no" (`text, logos, extra fingers`); **Runway** no admite negativos, describe solo lo que debe aparecer; **Kling** artefactos concretos (`sliding feet, morphing`) | No ponerlo y que salga texto o manos deformes; escribir "no hands" en un modelo que lee la palabra y la dibuja |
 
 Si hay first frame o fichas de referencia, `CHARACTER` y `ENVIRONMENT` pueden ser más cortos (la imagen ya los define) y el peso pasa a `STORYLINE` y `AESTHETIC`. Si el storyboard ya está en la imagen de referencia, basta un prompt breve que pida seguir los paneles y mantener consistencia con las fichas.
 
@@ -48,7 +48,7 @@ no text, no watermark, no logos, no subtitles, [no people / no hands si es solo 
 ```
 [STORYLINE] El taladro inalámbrico reposa sobre el banco; la luz se intensifica sobre el mandril mientras partículas de aserrín flotan en el haz. El mandril gira dos vueltas y se detiene.
 [AESTHETIC] Comercial cinematográfico, contraste alto, colores sobrios. Dolly in lento desde plano medio a detalle del mandril, 5 s. Luz lateral dura de ventana, tarde. Paleta #1C1C1C, #E8A33D, #C9C2B6.
-[NEGATIVE] no text, no logos, no watermark, no hands, no people, no music
+[NEGATIVE] text, logos, watermark, hands, people, music
 ```
 
 ## Ejemplo — UGC con diálogo (imagen→video)
@@ -57,7 +57,7 @@ no text, no watermark, no logos, no subtitles, [no people / no hands si es solo 
 [ENVIRONMENT] Su sala, tarde, luz de ventana.
 [STORYLINE] Dice en español colombiano, con energía: "Les juro que no sabía que esto existía. Mírenlo." y gira levemente el teléfono hacia el producto en la mesa.
 [AESTHETIC] Video vertical grabado con celular, leve movimiento de mano, sin look de estudio.
-[NEGATIVE] no text, no subtitles, no logos, no music, no distorted hands
+[NEGATIVE] text, subtitles, logos, music, distorted hands
 ```
 
 ## Productos con texto: patrones de primer y último cuadro
@@ -66,7 +66,7 @@ Cuando el modelo admite primer y último cuadro (p. ej. Veo en Flow, "Fotogramas
 **Transición de luz** (revelación): primer cuadro = versión oscura de la imagen madre; último cuadro = imagen madre iluminada.
 ```
 La luz cálida de un farol entra lentamente desde la izquierda y recorre el frasco hasta iluminar por completo la etiqueta. El frasco y su etiqueta permanecen inmóviles y sin cambios. Cámara fija. Partículas de polvo en el haz de luz. Comercial de lujo, contraste alto.
-NEGATIVE: no text changes, no camera rotation, no new objects, no music
+NEGATIVE: text changes, camera rotation, new objects, music
 ```
 
 **Producto inmóvil** (plano héroe): la misma imagen como primer **y** último cuadro.

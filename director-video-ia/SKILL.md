@@ -96,7 +96,9 @@ Lee `references/prompting-video.md`. Por cada toma, prompt por etiquetas:
 - `ACTION SEQUENCE` — solo si el modelo soporta varios planos en una generación: plano por plano en orden.
 - `NEGATIVE` — lo que no debe aparecer (texto, logos, marcas de agua, manos si no aportan, música si se pondrá en post…).
 
-Adapta el formato al modelo elegido (JSON para modelos que lo aprovechan, bloques de texto etiquetados para el resto) y añade parámetros: relación de aspecto, duración, resolución de prueba (720p) y final.
+Adapta el formato al modelo elegido (JSON para modelos que lo aprovechan, bloques de texto etiquetados para el resto) y añade parámetros: relación de aspecto, duración, resolución de prueba (720p) y final. Los negativos cambian por modelo: Veo los quiere como sustantivos sin "no"; Runway no los usa (describe solo lo que debe aparecer); Kling, artefactos concretos.
+
+**Antes de gastar un solo crédito de video**, pasa el paquete por la revisión A de `auditor-video-ia` (pre-vuelo). Responde con razones a cada pregunta del auditor y aplica sus correcciones; solo se generan las tomas con veredicto GENERAR. Si la skill no está disponible, recorre tú mismo su catálogo de riesgos.
 
 Patrones de cuadros que protegen el producto (ver `references/prompting-video.md`):
 - **Transición de luz:** primer cuadro = versión oscura, último cuadro = imagen madre iluminada. El modelo solo anima la luz; el último cuadro ya trae la etiqueta correcta.
@@ -111,6 +113,7 @@ Lee `references/qa-postpro.md`.
 - Plan de postproducción: orden de montaje (de general a detalle), cortes en los golpes de la música, música/SFX, y la capa de texto/logo/precio/CTA que va encima.
 - **Cortes en los golpes:** mide los golpes de la pista (energía/onsets, tempo) y ajusta la duración de cada toma para que cada corte caiga en uno. Los textos se ubican **después** de ver dónde quedó el producto en cada toma, nunca encima de la etiqueta.
 - **Dos entregables por pieza para redes:** versión sin audio (para poner música en la app) y versión con música licenciada. Reglas de licencias en `references/qa-postpro.md`.
+- **Cada clip generado pasa por la revisión B de `auditor-video-ia`** (cuadros cada 0.5 s, 0.25 s en eventos) antes de entrar al montaje, y cada hallazgo se registra en su bitácora.
 - Si está disponible el MCP `video-post` (herramientas `inventario`, `extraer_cuadros`, `zoom_foto`, `montar`, `texto_y_logo`, `audio`, `render`), úsalo para ejecutar el plan y para el QA de cuadros; usa siempre la ruta de salida que devuelve cada herramienta como entrada del siguiente paso.
 
 ## Entregable
