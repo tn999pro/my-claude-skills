@@ -22,6 +22,7 @@ Fuente de verdad de mis skills personales de Claude Code. Los directorios en
 | content-automation | Contenido con IA + distribución n8n (embudo WhatsApp de Vantedge) |
 | director-video-ia | Producción de video con IA: brief, guion técnico, prompts por etiquetas, modelo por toma, QA de texto y postproducción |
 | pc-optimizer | Diagnóstico y optimización de PCs Windows (hardware, memoria, disco, cachés de desarrollo) |
+| auditor-video-ia | Auditoría independiente de video con IA: riesgos antes de gastar créditos, revisión cuadro a cuadro después y bitácora de aprendizaje |
 | vantedge-contenido | Estados de WhatsApp, posts y reels de Vantedge: marca, voz, formato 1080×1920 y reglas de publicación |
 
 ## Plugins (no se duplican en este repo)
