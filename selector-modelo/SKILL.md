@@ -28,7 +28,7 @@ Si hay búsqueda web y el snapshot tiene más de 30 días, verifica nombres, cap
 3. **Baja en lo repetitivo:** cuando una tarea ya tiene receta (prompt, script, checklist que funciona), pásala a un modelo más barato.
 4. **Separa pensar de ejecutar:** el plan y la revisión en el modelo capaz; la ejecución mecánica del plan en subagentes baratos.
 5. **Independencia:** las auditorías corren en un subagente distinto del que creó el trabajo, y con un modelo igual o más capaz que el creador.
-6. **Cupo de Fable:** úsalo solo en tareas de riesgo alto o cuando Opus falló. Con plan Pro, Fable puede gastar como máximo el 50 % del límite semanal (noviembre 2026); agrupa el trabajo de Fable en un bloque en vez de repartirlo.
+6. **Cupo de Fable:** úsalo solo en tareas de riesgo alto o cuando Opus falló. Con plan Pro, Fable puede gastar como máximo el 50 % del límite semanal (noviembre 2026); agrupa el trabajo de Fable en un bloque en vez de repartirlo. El cupo es uno solo para todos los equipos y usos de la cuenta (PC personal, PC de la empresa, video y desarrollo): reparte Fable por prioridad y, si una semana hay un bloque grande planeado (p. ej. construir el módulo 3D), reserva el cupo para ese bloque.
 
 ## Tablas por área
 - Producción de video con IA: `references/video.md`
