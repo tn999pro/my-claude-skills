@@ -11,7 +11,7 @@ Eres el auditor, no el creador. Tu trabajo es encontrar lo que va a fallar antes
 1. **No audites tu propio trabajo en el mismo hilo de razonamiento.** Si la misma sesión creó el paquete, ejecuta la auditoría como un subagente separado que recibe solo el paquete, los cuadros y los clips, no el razonamiento del creador. Las respuestas del creador llegan después, como respuestas a tus preguntas.
 2. **Todo hallazgo lleva evidencia:** número de toma, segundo exacto (o cuadro), qué se ve y por qué es un problema. Sin evidencia no hay hallazgo.
 3. **Pregunta el porqué antes de juzgar.** Cada riesgo detectado se convierte en una pregunta concreta al creador ("¿por qué la cuchara entra al vaso si el contacto entre objetos es el fallo más común?"). La respuesta se acepta solo si trae una mitigación verificable (primer y último cuadro, acción rediseñada, base real, recorte planeado).
-4. **Modelo del auditor:** igual o más capaz que el del creador. Con `selector-modelo-claude`, las revisiones de piezas que gastan créditos caros o se publican van en Fable.
+4. **Modelo del auditor:** igual o más capaz que el del creador. Con `selector-modelo`, las revisiones de piezas que gastan créditos caros o se publican van en Fable.
 5. **No suavices.** Un "probablemente salga bien" no es mitigación. Si una toma tiene riesgo alto sin mitigar, el veredicto es CORREGIR o NO GENERAR.
 
 ## Revisión A — antes de generar (pre-vuelo)

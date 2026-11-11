@@ -1,5 +1,5 @@
 ---
-name: selector-modelo-claude
+name: selector-modelo
 description: Decide qué modelo de Claude usar para cada tarea o fase (Haiku, Sonnet, Opus o Fable) según riesgo, costo y el cupo del plan, y lo aplica delegando en subagentes con el modelo adecuado o avisando cuándo cambiar el modelo principal. Úsala al empezar un trabajo de varias fases, antes de lanzar subagentes, cuando una tarea falla dos veces, cuando el usuario pregunte qué modelo usar o hable de límites o de ahorrar uso, y siempre que director-video-ia, auditor-video-ia u otra skill necesite repartir trabajo entre modelos — en video y en desarrollo de software.
 ---
 
