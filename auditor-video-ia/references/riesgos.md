@@ -18,5 +18,6 @@ Cada riesgo: **señal** en el plan, **pregunta** al creador y **mitigaciones ace
 | 12 | Física imposible sin intención | Medio | Objetos que atraviesan, cambios de escala, gravedad rara no buscados | ¿Es un efecto buscado o un hueco del prompt? | Describir la física en una frase; recortar; base real |
 | 13 | Toma que la IA no necesita | Bajo | Texto animado, gráficos, contador, logo, foto de producto | ¿Por qué gastar créditos en algo que se hace por código o con la foto real? | Motion graphics por código; `zoom_foto`; `texto_y_logo` |
 | 14 | Unión con la toma vecina | Bajo | Cambio de luz, escala, ropa o dirección de mirada entre tomas | ¿Cómo empalma con la anterior y la siguiente? | Mismo último/primer cuadro; misma luz y paleta; corte en golpe de música |
+| 15 | Resolución final sin prueba barata | Medio | La primera generación de una toma nueva va directo en 1080p o 4K | ¿Por qué no probar primero en la resolución más baja si cuesta varias veces menos? | Prueba en 480p/720p; la resolución final solo para la toma aprobada (p. ej. Seedance 2.5: 30 créditos a 480p contra 120 a 1080p por 10 s) |
 
 Si aparece un riesgo que no está aquí, agrégalo a la tabla al cerrar la auditoría (con aprobación del usuario).

@@ -57,6 +57,9 @@ Lee `references/guion-tecnico.md`.
 
 Salida: tabla de tomas. Punto de control.
 
+### Modo "base real" (recomendado para piezas premium)
+Antes de generar desde cero, pregunta si la toma puede partir de **video real grabado con el celular**: el movimiento, la física, la cámara y el audio vienen de la realidad, y la IA solo transforma (reestilizar, cambiar el entorno, convertir en toma aérea, reemplazar un elemento). Así desaparecen la mayoría de fallas de física y contacto. Si aplica, entrega al usuario la indicación de grabación: encuadre (vertical/horizontal), ángulo, movimiento de cámara, duración, luz y qué debe hacer el sujeto. Los gráficos, textos animados, contadores y logos se hacen **por código** (HyperFrames o el MCP `video-post`), no con créditos de video.
+
 ### Fase 3 — Assets de consistencia
 Lee `references/assets-consistencia.md`.
 - Por cada personaje recurrente: prompt de imagen de pies a cabeza sobre fondo neutro → **character sheet** (frente, perfiles, primer plano de rostro y vestuario).

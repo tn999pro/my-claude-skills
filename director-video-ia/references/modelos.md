@@ -35,6 +35,19 @@ Las plataformas (Higgsfield, Runway, apps de Google, etc.) son el supermercado; 
 
 Nota: transcripciones del curso escriben "Seance", "Sidance", "Zidance" o "Ziyans"; todas se refieren a Seedance.
 
+## Seedance 2.5 en Higgsfield (blog de Higgsfield, ago 2026)
+- Hasta **30 s** en una sola toma continua; 480p, 720p o 1080p (reescalado a 4K aparte).
+- Hasta **50 referencias** (imágenes o clips) por generación; audio (ambiente, efectos, música) en la misma pasada.
+- Control de movimiento (trayectoria de cámara y sujeto), elección de cámara y lente, y constructor de escena 3D para ubicar cámara y luz.
+- Funciones de transición entre dos clips y de extender un clip.
+- **Costo por 10 s:** 480p = 30 créditos (US$1.50) · 720p = 70 (US$3.50) · 1080p = 120 (US$6.00). **Probar siempre en 480p** y subir a la resolución final solo con la toma aprobada: la prueba cuesta 4 veces menos.
+- Se usa también para reestilizar video real (video→video) con texto animado y barridos de cámara: base del modo "base real".
+
+## Motion graphics por código: HyperFrames (decisión nov 2026)
+- Motor elegido para textos animados, contadores, logos, tercios inferiores, mapas, gráficos y animaciones 3D que siguen un movimiento: **HyperFrames** (HeyGen, licencia Apache 2.0, HTML/CSS/JS → MP4 o capa con transparencia). Requiere Node 22+ y FFmpeg; comandos `npx hyperframes init | preview | render`.
+- Se prefirió a Remotion porque Remotion es de código visible con licencia de pago a partir de cierto tamaño de empresa.
+- No gasta créditos de video: lo que se pueda hacer así no se genera con IA (riesgo 13 del auditor).
+
 ## Cómo recomendar
 Por toma: `Modelo principal — razón en una línea · Alternativa — cuándo usarla`.
 Ejemplo:

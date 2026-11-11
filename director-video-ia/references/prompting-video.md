@@ -79,6 +79,16 @@ Reglas:
 - El movimiento lo dan la luz, el humo, las partículas y el foco. Evita órbitas, giros del producto o paneos amplios: cada ángulo nuevo obliga a inventar la etiqueta.
 - Si una toma sin cuadros sale casi estática, pide el movimiento de forma explícita y medible ("dolly in lento de plano medio a detalle", "la llama crece").
 
+## Transición por logo u objeto (dos tomas en un solo movimiento)
+Une dos tomas distintas con un movimiento continuo de cámara a través de un objeto (logo, emblema, rueda, letra). Visto en reels de Keanu Visuals con Seedance 2.5 (nov 2026); funciona con cualquier modelo que acepte primer y último cuadro (Veo en Flow, Seedance, Kling).
+- **Primer cuadro:** el final de la toma A (captura del video o foto). **Último cuadro:** el inicio de la toma B.
+- **Prompt:** describe el recorrido de la cámara (p. ej. retrocede atravesando el emblema), qué hace el objeto (entra al cuadro, gira y encaja en su lugar), un giro de cámara (roll) suave y una aceleración (speed ramp) en el medio.
+```
+The camera pulls backward through the chrome emblem as it flies into frame, rotates a half turn and snaps into place on the car grille, revealing the second shot. Smooth camera roll, speed ramp: fast in the middle, slow at the end. One continuous movement. Audio: whoosh at the speed ramp, no music.
+```
+- Mismo formato (relación de aspecto) y calidad que el material original para que el empalme no se note.
+- El auditor revisa el cuadro de unión: el objeto no debe deformarse ni cambiar de forma al llegar.
+
 ## Parámetros por toma
 - Relación de aspecto: 9:16 (Reels/TikTok) o 16:9.
 - Duración: 3–6 s para comerciales cortos; el límite real depende del modelo.
