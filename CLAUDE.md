@@ -34,6 +34,7 @@ Responde **siempre en español**.
 ## Skills
 - Los skills globales viven en `~/.claude/skills/` (symlinks al repo `my-claude-skills`).
 - Úsalos cuando apliquen, sin pedir permiso.
+- `selector-modelo-claude`: decide qué modelo usar por tarea (Haiku, Sonnet, Opus, Fable) en desarrollo y en video; consúltalo al empezar trabajos de varias fases y antes de lanzar subagentes. Plan Pro: Fable solo para lo de riesgo alto.
 - `jira-sprint-review`: cruza issues de Jira contra el código y arma el plan del
   sprint. Acceso a Jira por **API token (Basic auth)**, preferido sobre el MCP de
   Atlassian (OAuth/SSE inestable). Setup en `jira-sprint-review/references/jira-rest.md`.

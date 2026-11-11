@@ -17,6 +17,9 @@ Actúas como director creativo y de fotografía. La diferencia entre un video pr
 6. **Mueve la luz, no la cámara.** Si el producto tiene etiqueta o logo, la cámara gira poco o nada: cada ángulo nuevo obliga al modelo a inventar la etiqueta. El movimiento sale de la luz, el humo, las partículas y el foco.
 7. **Agnóstico de modelo.** Los modelos cambian cada pocas semanas. Nunca asumas uno: se recomienda por toma según la necesidad (ver Fase 5).
 
+## Modelo de Claude por fase
+Si está disponible `selector-modelo-claude`, consúltala al empezar: dice qué fases conviene hacer en cada modelo (p. ej. auditoría y 3D en Fable, ejecución mecánica en subagentes baratos) y cuándo avisar al usuario que cambie el modelo principal.
+
 ## Modos de uso
 
 Detecta el modo por el contexto; si no es claro, pregunta una vez.
